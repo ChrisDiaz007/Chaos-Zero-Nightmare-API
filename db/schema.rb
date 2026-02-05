@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_02_05_005050) do
+ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_005050) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "character_partners", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_partners_on_character_id"
+    t.index ["partner_id"], name: "index_character_partners_on_partner_id"
+  end
+
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
     t.string "character_attribute", null: false
@@ -51,6 +60,17 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_005050) do
     t.string "overview", default: [], array: true
     t.string "strengths", default: [], array: true
     t.string "weaknesses", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "character_class", null: false
+    t.integer "rating", null: false
+    t.string "overview", default: [], array: true
+    t.string "passive", default: [], array: true
+    t.string "ego", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,4 +92,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_005050) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "character_partners", "characters"
+  add_foreign_key "character_partners", "partners"
 end

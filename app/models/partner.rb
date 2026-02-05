@@ -1,19 +1,15 @@
-class Character < ApplicationRecord
+class Partner < ApplicationRecord
   has_many :character_partners
-  has_many :partners, through: :character_partners
+  has_many :characters, through: :character_partners
 
   validates :name, presence: true
-  validates :character_attribute, presence: true, inclusion: {
-    in: %w[Passion Void Instinct Order Justice]
-  }
   validates :character_class, presence: true, inclusion: {
     in: %w[Striker Vanguard Ranger Hunter Psionic Controller]
   }
-  validates :role, presence: true
 
   validates :rating, numericality: {
                                     only_integer: true,
-                                    greater_than_or_equal_to: 1,
+                                    greater_than: 0,
                                     less_than_or_equal_to: 5
                                   }
 
