@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  character_attribute: MyString
+  character_class: MyString
+  role: MyString
+  overview: MyString
+  strengths: MyString
+  weaknesses: MyString
+
+two:
+  name: MyString
+  character_attribute: MyString
+  character_class: MyString
+  role: MyString
+  overview: MyString
+  strengths: MyString
+  weaknesses: MyString
