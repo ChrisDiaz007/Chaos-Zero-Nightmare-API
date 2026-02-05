@@ -61,8 +61,8 @@ class Api::V1::CharactersController < Api::V1::BaseController
 
   def character_params
     params.require(:character).permit(
-      :name, :character_attribute, :character_class,
-      :role, :rating, overview: [], strengths: [], weaknesses: []
+      :name, :character_attribute, :character_class, :role, :rating,
+      :cover, :crop, :half, :portrait, overview: [], strengths: [], weaknesses: [],
     )
   end
 
