@@ -2,7 +2,6 @@ class Api::V1::CharactersController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    # @characters = Character.all
     @characters = policy_scope(Character)
 
     if params[:name].present?
