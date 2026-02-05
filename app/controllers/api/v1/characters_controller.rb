@@ -24,6 +24,25 @@ class Api::V1::CharactersController < ApplicationController
     end
   end
 
+  def edit
+    @character = Character.find(params[:id])
+  end
+
+  def update
+    @character = Character.find(params[:id])
+    if @character.update(character_params)
+      render json: @character, status: :created
+    else
+      render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @character = Character.find(params[:id])
+    @character.destroy
+    head :no_content
+  end
+
   private
 
   def character_params
