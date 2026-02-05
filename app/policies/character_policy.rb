@@ -22,7 +22,7 @@ class CharacterPolicy < ApplicationPolicy
   end
 
   def update?
-    return ser&.admin?
+    return user&.admin?
   end
 
   def destroy?
