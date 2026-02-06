@@ -1,4 +1,4 @@
-class CharacterPolicy < ApplicationPolicy
+class StrengthPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
       user&.admin? ? scope.all : scope.where(user: user)
