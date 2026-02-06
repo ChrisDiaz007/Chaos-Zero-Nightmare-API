@@ -19,14 +19,8 @@ class Api::V1::CharactersController < Api::V1::BaseController
     render json: CharacterSerializer.new(@character)
   end
 
-  def new
-    @character = Character.new
-    authorize @character
-  end
-
   def create
     @character = Character.new(character_params)
-    @character.user = current_user
     authorize @character
     if @character.save
       render json: @character, status: :created
@@ -35,17 +29,13 @@ class Api::V1::CharactersController < Api::V1::BaseController
     end
   end
 
-  def edit
-    @character = Character.find(params[:id])
-    authorize @character
-  end
-
   def update
     @character = Character.find(params[:id])
     authorize @character
     if @character.update(character_params)
       render json: @character, status: :created
     else
+      puts "Character creation failed: #{@character.errors.full_messages.inspect}"
       render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
     end
   end
@@ -62,7 +52,7 @@ class Api::V1::CharactersController < Api::V1::BaseController
   def character_params
     params.require(:character).permit(
       :name, :character_attribute, :character_class, :role, :rating,
-      :cover, :crop, :half, :portrait, overview: [], strengths: [], weaknesses: [],
+      :cover, :crop, :half, :portrait
     )
   end
 

@@ -13,25 +13,14 @@ class Api::V1::PartnersController < Api::V1::BaseController
     render json: PartnerSerializer.new(@partner)
   end
 
-  def new
-    @partner = Partner.new
-    authorize @partner
-  end
-
   def create
     @partner = Partner.new(partner_params)
-    @partner.user = current_user
     authorize @partner
     if @partner.save
       render json: @partner, status: :created
     else
       render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
     end
-  end
-
-  def edit
-    @partner = Partner.find(params[:id])
-    authorize @partner
   end
 
   def update

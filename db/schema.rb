@@ -57,9 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
     t.string "character_class", null: false
     t.string "role", null: false
     t.integer "rating", null: false
-    t.string "overview", default: [], array: true
-    t.string "strengths", default: [], array: true
-    t.string "weaknesses", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
