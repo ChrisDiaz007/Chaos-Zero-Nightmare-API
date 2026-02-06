@@ -10,9 +10,11 @@ class Api::V1::OverviewsController < Api::V1::BaseController
   end
 
   def create
-    @character = Character.find(params[params(:character_id)])
+    @character = Character.find(params[:character_id])
     @overview = Overview.new(overview_params)
-    @overview.character = @overview
+    @overview.character = @character
+    # @character = Character.find(params[:character_id])
+    # @overview = @character.overviews.new(overview_params)
     authorize @overview
     if @overview.save
       render json: @overview, status: :created
@@ -22,11 +24,11 @@ class Api::V1::OverviewsController < Api::V1::BaseController
   end
 
   def update
-    @character = Character.find[params(:character_id)]
-    @overview = @character.overview.find(params[:id])
+    @character = Character.find(params[:character_id])
+    @overview = @character.overviews.find(params[:id])
     authorize @overview
     if @overview.update(overview_params)
-      render @overview
+      render json: @overview
     else
       render json: { errors: @overview.errors.full_messages }, status: :unprocessable_entity
     end
@@ -34,7 +36,7 @@ class Api::V1::OverviewsController < Api::V1::BaseController
 
   def destroy
     @character = Character.find(params[:character_id])
-    @overview = @character.overview.find(params[:id])
+    @overview = @character.overviews.find(params[:id])
     authorize @overview
     if @overview.destroy
       render json: { message: "Overview deleted successfully" }, status: :ok

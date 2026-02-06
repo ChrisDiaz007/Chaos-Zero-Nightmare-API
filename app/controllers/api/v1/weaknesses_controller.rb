@@ -12,7 +12,7 @@ class Api::V1::WeaknessesController < Api::V1::BaseController
   def create
     @character = Character.find(params[:character_id])
     @weakness = Weakness.new(weakness_params)
-    @weakness.character = @weakness
+    @weakness.character = @character
     authorize @weakness
     if @weakness.save
       render json: @weakness, status: :created
@@ -25,7 +25,7 @@ class Api::V1::WeaknessesController < Api::V1::BaseController
     @character = Character.find(params[:character_id])
     @weakness = @character.weaknesses.find(params[:id])
     authorize @weakness
-    if @weakness.update(strength_params)
+    if @weakness.update(weakness_params)
       render json: @weakness
     else
       render json: { errors: @weakness.errors.full_messages }, status: :unprocessable_entity
