@@ -109,6 +109,7 @@ class SaveDeckSerializer
         talent: card.talent,
         can_epiphany: card.can_epiphany,
         character_id: card.character_id,
+        image: card.image.url
       }
     end
   end
