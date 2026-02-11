@@ -87,6 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.string "name", null: false
     t.string "category", null: false
     t.boolean "rarity", null: false
+    t.string "rating", null: false
     t.integer "attack", default: 0, null: false
     t.integer "defense", default: 0, null: false
     t.integer "health", default: 0, null: false

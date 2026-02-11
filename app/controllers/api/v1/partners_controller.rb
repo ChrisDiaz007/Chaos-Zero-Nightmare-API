@@ -25,6 +25,7 @@ class Api::V1::PartnersController < Api::V1::BaseController
 
   def update
     @partner = Partner.find(params[:id])
+    authorize @partner
     if @partner.update(partner_params)
       render json: @partner, status: :created
     else
@@ -43,7 +44,9 @@ class Api::V1::PartnersController < Api::V1::BaseController
 
   def partner_params
     params.require(:partner).permit(
-      :name, :character_class, overview: [], passive: [], ego: []
+      :name, :job, :rarity, :title, :backstory, :race, :birthday, :specialty,
+      :cv, :passive_name, :passive_description, :ego_name, :ego_description,
+      :cover
     )
   end
 end

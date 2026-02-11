@@ -20,4 +20,8 @@ class Card < ApplicationRecord
     total_modifier = epiphanies.sum(:cost_modifier) || 0
     [0, base_cost + total_modifier].max
   end
+
+  validates :image, presence: true
+  has_one_attached :image, dependent: :purge_later
+
 end

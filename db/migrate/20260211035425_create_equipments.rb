@@ -4,6 +4,7 @@ class CreateEquipments < ActiveRecord::Migration[7.1]
       t.string :name, null: false
       t.string :category, null: false
       t.boolean :rarity, null: false
+      t.string :rating, null: false
       t.integer :attack, default: 0, null: false
       t.integer :defense, default: 0, null: false
       t.integer :health, default: 0, null: false

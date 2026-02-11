@@ -18,16 +18,9 @@ class CharacterSerializer
     character&.portrait.url
   end
 
-  attribute :overviews do |character|
-    character&.overviews.pluck(:content)
-  end
-
-  attribute :strengths do |character|
-    character&.strengths.pluck(:content)
-  end
-
-  attribute :weaknesses do |character|
-    character&.weaknesses.pluck(:content)
-  end
+  # will leave for info
+  # attribute :overviews do |character|
+  #   character&.overviews.pluck(:content)
+  # end
 
 end

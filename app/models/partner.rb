@@ -14,4 +14,7 @@ class Partner < ApplicationRecord
                                     less_than_or_equal_to: 5
                                   }
 
+  validates :cover, presence: true
+  has_one_attached :cover, dependent: :purge
+
 end

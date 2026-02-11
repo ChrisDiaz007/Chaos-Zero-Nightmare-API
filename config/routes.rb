@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
       resources :partners
 
+      resources :equipments
+
+      resources :cards
+
+      resources :save_decks
+
     end
   end
 end
