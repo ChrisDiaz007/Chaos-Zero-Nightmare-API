@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_02_06_024336) do
+ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,39 +53,33 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_06_024336) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
+    t.string "job", null: false
     t.string "character_attribute", null: false
-    t.string "character_class", null: false
     t.string "role", null: false
-    t.integer "rating", null: false
+    t.integer "rarity", null: false
+    t.string "overviews", default: [], array: true
+    t.string "strengths", default: [], array: true
+    t.string "weaknesses", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "overviews", force: :cascade do |t|
-    t.bigint "character_id", null: false
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_overviews_on_character_id"
   end
 
   create_table "partners", force: :cascade do |t|
     t.string "name", null: false
-    t.string "character_class", null: false
-    t.integer "rating", null: false
-    t.string "overview", default: [], array: true
-    t.string "passive", default: [], array: true
-    t.string "ego", default: [], array: true
+    t.string "job", null: false
+    t.integer "rarity", null: false
+    t.string "title", null: false
+    t.text "backstory", null: false
+    t.string "race", null: false
+    t.string "birthday", null: false
+    t.string "specialty", null: false
+    t.string "cv", null: false
+    t.string "passive_name", null: false
+    t.string "passive_description", default: [], array: true
+    t.string "ego_name", null: false
+    t.string "ego_description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "strengths", force: :cascade do |t|
-    t.bigint "character_id", null: false
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_strengths_on_character_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,19 +97,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_06_024336) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "weaknesses", force: :cascade do |t|
-    t.bigint "character_id", null: false
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_weaknesses_on_character_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "character_partners", "characters"
   add_foreign_key "character_partners", "partners"
-  add_foreign_key "overviews", "characters"
-  add_foreign_key "strengths", "characters"
-  add_foreign_key "weaknesses", "characters"
 end
