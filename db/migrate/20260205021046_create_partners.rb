@@ -17,5 +17,8 @@ class CreatePartners < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :partners, :name, unique: true
+
   end
 end
