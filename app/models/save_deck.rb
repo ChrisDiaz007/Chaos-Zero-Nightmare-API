@@ -1,0 +1,2 @@
+class SaveDeck < ApplicationRecord
+end

@@ -12,11 +12,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json} do
     namespace :v1 do
 
-      resources :characters do
-        resources :overviews, except: [:show]
-        resources :strengths, except: [:show]
-        resources :weaknesses, except: [:show]
-      end
+      resources :characters
 
       resources :partners
 

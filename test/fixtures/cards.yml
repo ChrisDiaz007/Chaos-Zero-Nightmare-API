@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  cost: MyString
+  rarity: MyString
+  card_type: MyString
+  faction: MyString
+  combatan: false
+  can_epiphany: false
+  talent: MyString
+  character: one
+
+two:
+  name: MyString
+  description: MyText
+  cost: MyString
+  rarity: MyString
+  card_type: MyString
+  faction: MyString
+  combatan: false
+  can_epiphany: false
+  talent: MyString
+  character: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
+ActiveRecord::Schema[7.1].define(version: 2026_02_11_031711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,7 +42,24 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.string "cost", null: false
+    t.string "rarity", null: false
+    t.string "card_type", null: false
+    t.string "faction", null: false
+    t.boolean "combatant", null: false
+    t.string "talent", null: false
+    t.boolean "can_epiphany", null: false
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_cards_on_character_id"
+  end
+
   create_table "character_partners", force: :cascade do |t|
+    t.string "tier", null: false
     t.bigint "character_id", null: false
     t.bigint "partner_id", null: false
     t.datetime "created_at", null: false
@@ -60,6 +77,17 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
     t.string "overviews", default: [], array: true
     t.string "strengths", default: [], array: true
     t.string "weaknesses", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "category", null: false
+    t.boolean "rarity", null: false
+    t.integer "attack", default: 0, null: false
+    t.integer "defense", default: 0, null: false
+    t.integer "health", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -82,6 +110,32 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "save_deck_cards", force: :cascade do |t|
+    t.bigint "save_deck_id", null: false
+    t.bigint "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_save_deck_cards_on_card_id"
+    t.index ["save_deck_id"], name: "index_save_deck_cards_on_save_deck_id"
+  end
+
+  create_table "save_decks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.bigint "character_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "weapon_id"
+    t.bigint "armor_id"
+    t.bigint "accessory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accessory_id"], name: "index_save_decks_on_accessory_id"
+    t.index ["armor_id"], name: "index_save_decks_on_armor_id"
+    t.index ["character_id"], name: "index_save_decks_on_character_id"
+    t.index ["user_id"], name: "index_save_decks_on_user_id"
+    t.index ["weapon_id"], name: "index_save_decks_on_weapon_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -99,6 +153,14 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_05_023210) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "characters"
   add_foreign_key "character_partners", "characters"
   add_foreign_key "character_partners", "partners"
+  add_foreign_key "save_deck_cards", "cards"
+  add_foreign_key "save_deck_cards", "save_decks"
+  add_foreign_key "save_decks", "characters"
+  add_foreign_key "save_decks", "equipment", column: "accessory_id"
+  add_foreign_key "save_decks", "equipment", column: "armor_id"
+  add_foreign_key "save_decks", "equipment", column: "weapon_id"
+  add_foreign_key "save_decks", "users"
 end

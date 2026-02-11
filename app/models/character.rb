@@ -1,9 +1,6 @@
 class Character < ApplicationRecord
   has_many :character_partners
   has_many :partners, through: :character_partners
-  has_many :overviews, dependent: :destroy
-  has_many :strengths, dependent: :destroy
-  has_many :weaknesses, dependent: :destroy
 
   validates :name, presence: true
   validates :character_attribute, presence: true, inclusion: {
