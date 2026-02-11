@@ -10,7 +10,7 @@ class SaveDeckSerializer
       name: character.name,
       character_attribute: character.character_attribute,
       job: character.job,
-      rarity: character.rarity,
+      rating: character.rating,
       half: character.half.url
     }
   end
@@ -21,7 +21,7 @@ class SaveDeckSerializer
       id: partner.id,
       name: partner.name,
       job: partner.job,
-      rarity: partner.rarity,
+      rating: partner.rating,
       passive_name: partner.passive_name,
       passive_description: partner.passive_description,
       ego_name: partner.ego_name,
@@ -37,8 +37,8 @@ class SaveDeckSerializer
       id: weapon.id,
       name: weapon.name,
       category: weapon.category,
-      rarity: weapon.rarity,
       rating: weapon.rating,
+      rarity: weapon.rarity,
       attack: weapon.attack,
       image: weapon.image.url
     }
@@ -51,8 +51,8 @@ class SaveDeckSerializer
       id: armor.id,
       name: armor.name,
       category: armor.category,
-      rarity: armor.rarity,
       rating: armor.rating,
+      rarity: armor.rarity,
       defense: armor.defense,
       image: armor.image.url
     }
@@ -65,8 +65,8 @@ class SaveDeckSerializer
       id: accessory.id,
       name: accessory.name,
       category: accessory.category,
-      rarity: accessory.rarity,
       rating: accessory.rating,
+      rarity: accessory.rarity,
       health: accessory.health,
       image: accessory.image.url
     }

@@ -44,7 +44,7 @@ class Api::V1::PartnersController < Api::V1::BaseController
 
   def partner_params
     params.require(:partner).permit(
-      :name, :job, :rarity, :title, :backstory, :race, :birthday, :specialty,
+      :name, :job, :rating, :title, :backstory, :race, :birthday, :specialty,
       :cv, :passive_name, :passive_description, :ego_name, :ego_description,
       :cover
     )

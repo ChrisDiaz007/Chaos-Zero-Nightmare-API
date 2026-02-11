@@ -3,7 +3,7 @@ class CreatePartners < ActiveRecord::Migration[7.1]
     create_table :partners do |t|
       t.string :name, null: false
       t.string :job, null: false
-      t.integer :rarity, null: false
+      t.integer :rating, null: false
       t.string :title, null: false
       t.text :backstory, null: false
       t.string :race, null: false

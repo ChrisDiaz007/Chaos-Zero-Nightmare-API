@@ -44,7 +44,7 @@ class Api::V1::CardsController < Api::V1::BaseController
 
   def card_params
     params.require(:card).permit(
-      :name, :description, :cost, :rarity, :card_type, :faction, :combatant,
+      :name, :description, :cost, :rating, :card_type, :faction, :combatant,
       :talent, :can_epiphany, :image, :character_id
     )
   end

@@ -51,9 +51,9 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.string "card_type", null: false
     t.string "faction", null: false
     t.boolean "combatant", null: false
-    t.string "talent", null: false
+    t.string "talent", default: [], array: true
     t.boolean "can_epiphany", null: false
-    t.bigint "character_id", null: false
+    t.bigint "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_cards_on_character_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.string "job", null: false
     t.string "character_attribute", null: false
     t.string "role", null: false
-    t.integer "rarity", null: false
+    t.integer "rating", null: false
     t.string "overviews", default: [], array: true
     t.string "strengths", default: [], array: true
     t.string "weaknesses", default: [], array: true
@@ -87,8 +87,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
   create_table "equipments", force: :cascade do |t|
     t.string "name", null: false
     t.string "category", null: false
-    t.integer "rarity", null: false
-    t.string "rating", null: false
+    t.integer "rating", null: false
+    t.string "rarity", null: false
     t.string "zero_system", null: false
     t.integer "attack", default: 0, null: false
     t.integer "defense", default: 0, null: false
@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
   create_table "partners", force: :cascade do |t|
     t.string "name", null: false
     t.string "job", null: false
-    t.integer "rarity", null: false
+    t.integer "rating", null: false
     t.string "title", null: false
     t.text "backstory", null: false
     t.string "race", null: false

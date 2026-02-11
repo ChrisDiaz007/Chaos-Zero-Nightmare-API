@@ -9,9 +9,9 @@ class CreateCards < ActiveRecord::Migration[7.1]
       t.string :card_type, null: false
       t.string :faction, null: false
       t.boolean :combatant, null: false
-      t.string :talent, null: false
+      t.string :talent, array: true, default: []
       t.boolean :can_epiphany, null: false
-      t.references :character, null: false, foreign_key: true
+      t.references :character, null: true, foreign_key: true
 
       t.timestamps
     end
