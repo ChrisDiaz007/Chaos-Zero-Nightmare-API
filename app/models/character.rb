@@ -1,4 +1,5 @@
 class Character < ApplicationRecord
+  has_many :signature_cards, class_name: "Card", foreign_key: 'character_id'
   has_many :character_partners
   has_many :partners, through: :character_partners
 

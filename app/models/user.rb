@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :save_decks
+  has_many :save_decks, dependent: :destroy
 
   include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:

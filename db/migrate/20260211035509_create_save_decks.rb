@@ -5,9 +5,9 @@ class CreateSaveDecks < ActiveRecord::Migration[7.1]
       t.text :description, null: false
       t.references :character, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.references :weapon, foreign_key: { to_table: :equipment }
-      t.references :armor, foreign_key: { to_table: :equipment }
-      t.references :accessory, foreign_key: { to_table: :equipment }
+      t.references :weapon, foreign_key: { to_table: :equipments }
+      t.references :armor, foreign_key: { to_table: :equipments }
+      t.references :accessory, foreign_key: { to_table: :equipments }
 
       t.timestamps
     end

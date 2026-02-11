@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_02_11_031711) do
+ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_031711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_cards_on_character_id"
+    t.index ["name"], name: "index_cards_on_name", unique: true
   end
 
   create_table "character_partners", force: :cascade do |t|
@@ -79,9 +80,10 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_031711) do
     t.string "weaknesses", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_characters_on_name", unique: true
   end
 
-  create_table "equipment", force: :cascade do |t|
+  create_table "equipments", force: :cascade do |t|
     t.string "name", null: false
     t.string "category", null: false
     t.boolean "rarity", null: false
@@ -90,6 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_031711) do
     t.integer "health", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_equipments_on_name", unique: true
   end
 
   create_table "partners", force: :cascade do |t|
@@ -159,8 +162,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_031711) do
   add_foreign_key "save_deck_cards", "cards"
   add_foreign_key "save_deck_cards", "save_decks"
   add_foreign_key "save_decks", "characters"
-  add_foreign_key "save_decks", "equipment", column: "accessory_id"
-  add_foreign_key "save_decks", "equipment", column: "armor_id"
-  add_foreign_key "save_decks", "equipment", column: "weapon_id"
+  add_foreign_key "save_decks", "equipments", column: "accessory_id"
+  add_foreign_key "save_decks", "equipments", column: "armor_id"
+  add_foreign_key "save_decks", "equipments", column: "weapon_id"
   add_foreign_key "save_decks", "users"
 end

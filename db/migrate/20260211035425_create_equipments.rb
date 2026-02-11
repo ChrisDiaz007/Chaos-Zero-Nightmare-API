@@ -1,6 +1,6 @@
-class CreateEquipment < ActiveRecord::Migration[7.1]
+class CreateEquipments < ActiveRecord::Migration[7.1]
   def change
-    create_table :equipment do |t|
+    create_table :equipments do |t|
       t.string :name, null: false
       t.string :category, null: false
       t.boolean :rarity, null: false
@@ -10,5 +10,8 @@ class CreateEquipment < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :equipments, :name, unique: true
+
   end
 end
