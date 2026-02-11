@@ -127,6 +127,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.string "name", null: false
     t.text "description", null: false
     t.bigint "character_id", null: false
+    t.bigint "partner_id", null: false
     t.bigint "user_id", null: false
     t.bigint "weapon_id"
     t.bigint "armor_id"
@@ -136,6 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.index ["accessory_id"], name: "index_save_decks_on_accessory_id"
     t.index ["armor_id"], name: "index_save_decks_on_armor_id"
     t.index ["character_id"], name: "index_save_decks_on_character_id"
+    t.index ["partner_id"], name: "index_save_decks_on_partner_id"
     t.index ["user_id"], name: "index_save_decks_on_user_id"
     t.index ["weapon_id"], name: "index_save_decks_on_weapon_id"
   end
@@ -166,5 +168,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
   add_foreign_key "save_decks", "equipments", column: "accessory_id"
   add_foreign_key "save_decks", "equipments", column: "armor_id"
   add_foreign_key "save_decks", "equipments", column: "weapon_id"
+  add_foreign_key "save_decks", "partners"
   add_foreign_key "save_decks", "users"
 end

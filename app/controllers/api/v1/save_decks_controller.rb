@@ -7,7 +7,7 @@ class Api::V1::SaveDecksController < Api::V1::BaseController
     render json: SaveDeckSerializer.new(@decks)
   end
 
-  def index
+  def show
     @deck = SaveDeck.find(params[:id])
     authorize @deck
     render json: SaveDeckSerializer.new(@deck)
@@ -27,7 +27,7 @@ class Api::V1::SaveDecksController < Api::V1::BaseController
     @deck = SaveDeck.find(params[:id])
     authorize @deck
     if @deck.update(deck_params)
-      render :json, @deck, status: :created
+      render json: @deck, status: :created
     else
       render json: { errors: @deck.errors.full_messages }, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class Api::V1::SaveDecksController < Api::V1::BaseController
 
   def deck_params
     params.require(:save_deck).permit(
-      :name, :description, :character_id, :user_id, :weapon_id, :armor_id,
+      :name, :description, :character_id, :partner_id, :user_id, :weapon_id, :armor_id,
       :accessory_id
     )
   end
