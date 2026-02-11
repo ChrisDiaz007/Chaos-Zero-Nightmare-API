@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.text "description", null: false
     t.string "cost", null: false
     t.string "rarity", null: false
+    t.string "origin", null: false
     t.string "card_type", null: false
     t.string "faction", null: false
     t.boolean "combatant", null: false
@@ -56,7 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_cards_on_character_id"
-    t.index ["name"], name: "index_cards_on_name", unique: true
   end
 
   create_table "character_partners", force: :cascade do |t|
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.bigint "partner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id", "partner_id"], name: "index_character_partners_on_character_id_and_partner_id", unique: true
     t.index ["character_id"], name: "index_character_partners_on_character_id"
     t.index ["partner_id"], name: "index_character_partners_on_partner_id"
   end
@@ -86,14 +87,14 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
   create_table "equipments", force: :cascade do |t|
     t.string "name", null: false
     t.string "category", null: false
-    t.boolean "rarity", null: false
+    t.integer "rarity", null: false
     t.string "rating", null: false
+    t.string "zero_system", null: false
     t.integer "attack", default: 0, null: false
     t.integer "defense", default: 0, null: false
     t.integer "health", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_equipments_on_name", unique: true
   end
 
   create_table "partners", force: :cascade do |t|
@@ -112,6 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_11_035552) do
     t.string "ego_description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_partners_on_name", unique: true
   end
 
   create_table "save_deck_cards", force: :cascade do |t|

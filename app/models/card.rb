@@ -1,6 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :character, optional: true
-  has_many :save_decks, dependent: :destroy
+  has_many :save_decks, through: :save_deck_cards
   has_many :save_deck_cards, dependent: :destroy
 
   validates :name, presence: true
@@ -21,7 +21,7 @@ class Card < ApplicationRecord
     [0, base_cost + total_modifier].max
   end
 
-  validates :image, presence: true
+  # validates :image, presence: true
   has_one_attached :image, dependent: :purge_later
 
 end

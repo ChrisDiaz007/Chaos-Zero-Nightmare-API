@@ -1,6 +1,6 @@
 class CharacterSerializer
   include JSONAPI::Serializer
-  attributes :id, :name, :character_attribute, :character_class, :role, :rating
+  attributes :id, :name, :character_attribute, :job, :role, :rarity
 
   attribute :cover do |character|
     character&.cover.url

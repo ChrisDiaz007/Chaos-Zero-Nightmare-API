@@ -11,7 +11,4 @@ class CreateCharacterPartners < ActiveRecord::Migration[7.1]
     add_index :character_partners, [:character_id, :partner_id], unique: true
 
   end
-
-  add_index :character_partners, [:character_id, :partner_id], unique: true
-
 end

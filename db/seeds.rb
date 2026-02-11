@@ -1,25 +1,13 @@
 # db/seeds.rb
 
-# Clear existing data
 puts "Clearing existing data..."
-SaveDeckCard.destroy_all
-SaveDeck.destroy_all
 Card.destroy_all
 CharacterPartner.destroy_all
 Equipment.destroy_all
 Partner.destroy_all
 Character.destroy_all
-User.destroy_all
 
-puts "Creating user..."
-user = User.create!(
-  name: "admin",
-  email: "admin@gmail.com",
-  password: "password",
-  admin: true
-)
-
-puts "Created #{User.count} user"
+puts "Created #{User.count} user(s)"
 
 # ==========================================
 # Create Character: Rin
@@ -29,7 +17,7 @@ puts "Creating character: Rin..."
 rin = Character.create!(
   name: "Rin",
   job: "Striker",
-  rarity: "5",
+  rarity: 5,
   role: "MainDPS",
   character_attribute: "Void",
   overviews: [
@@ -60,9 +48,10 @@ card = Card.create!(
   card_type: "attack",
   origin: "basic",
   faction: "other",
+  talent: "none",
   combatant: true,
   can_epiphany: false,
-  character: rin
+  character: Character.first # use the created character
 )
 
 puts "Created card: #{card.name}"
@@ -75,9 +64,9 @@ puts "Creating partner: Scarlet..."
 scarlet = Partner.create!(
   name: "Scarlet",
   job: "Striker",
-  rarity: "5",
+  rarity: 5,
   title: "Witch of Shackles",
-  backstory: "A special security agent of Kaguya Pharmaceutical of Peltion, responsible for punishing various industrial spies. She's obsessed with binding her targets with knots and forcing them to obey, earning her the notorious nickname \"Witch of Shackles.\"",
+  backstory: "A special security agent of Kaguya Pharmaceutical...",
   race: "human",
   birthday: "March 31st",
   specialty: "Twisted Charm",
@@ -96,34 +85,52 @@ scarlet = Partner.create!(
 puts "Created partner: #{scarlet.name}"
 
 # ==========================================
-# Create Equipment: Crimson Sword
+# Create Equipment
 # ==========================================
-puts "Creating equipment: Crimson Sword..."
+puts "Creating equipment..."
 
-crimson_sword = Equipment.create!(
+crimson_weapon = Equipment.create!(
   name: "Crimson Sword",
   category: "weapon",
-  rarity: "5",
+  rarity: 5,
   rating: "legendary",
-  zero_system: "City of Mist",
+  zero_system: "Void some",
   attack: 50,
   defense: 0,
   health: 0
 )
+puts "Created equipment: #{crimson_weapon.name}"
 
-puts "Created equipment: #{crimson_sword.name}"
+crimson_armor = Equipment.create!(
+  name: "Crimson Chest",
+  category: "armor",
+  rarity: 5,
+  rating: "legendary",
+  zero_system: "Void some",
+  attack: 0,
+  defense: 50,
+  health: 0
+)
+puts "Created equipment: #{crimson_armor.name}"
+
+crimson_accessory = Equipment.create!(
+  name: "Crimson Accessory",
+  category: "accessory",
+  rating: "legendary",
+  zero_system: "Void some",
+  rarity: 5,
+  attack: 0,
+  defense: 0,
+  health: 50
+)
+puts "Created equipment: #{crimson_accessory.name}"
 
 # ==========================================
 # Summary
 # ==========================================
-puts "\n" + "="*50
 puts "SEED DATA SUMMARY"
-puts "="*50
-puts "Users: #{User.count}"
 puts "Characters: #{Character.count} - #{rin.name}"
 puts "Partners: #{Partner.count} - #{scarlet.name}"
 puts "Cards: #{Card.count} - #{card.name}"
-puts "Equipment: #{Equipment.count} - #{crimson_sword.name}"
-puts "="*50
+puts "Equipment: #{Equipment.count} - #{[crimson_weapon.name, crimson_armor.name, crimson_accessory.name].join(', ')}"
 puts "Seeding completed successfully!"
-puts "="*50
